@@ -9,3 +9,15 @@
 #
 # /etc:
 #     85
+
+file_count() {
+    local COUNT_INCLUDING_DOT_AND_DOUBLE_DOT=$(ls -a1 ${1}| wc -l)
+    local COUNT=0
+    ((COUNT=COUNT_INCLUDING_DOT_AND_DOUBLE_DOT - 2))
+    echo "${1}:"
+    echo "    ${COUNT}"
+}
+
+file_count "/etc"
+file_count "/var"
+file_count "/usr/bin"
