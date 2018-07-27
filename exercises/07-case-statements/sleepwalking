@@ -21,4 +21,15 @@
 #   :
 # done
 
-cat "$0"
+case "$1" in
+    start)
+        ./sleepwalkingserver &
+        ;;
+    stop)
+        kill $(cat sleepwalkingserver.pid)
+        ;;
+    *)
+        echo "Usage $0 start|stop"
+        exit 1
+        ;;
+esac
