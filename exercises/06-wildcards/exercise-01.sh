@@ -8,3 +8,11 @@
 #
 # For "extra credit" make sure to gracefully handle instances where there are no ".jpg" files in the
 # current directory. (Hint: Man bash and read the section on the nullglob option.)
+
+shopt -s nullglob
+DATE=$(date +%Y%m%d)
+for FILENAME in *.jpg
+do
+    mv "${FILENAME}" "${DATE}${FILENAME}"
+done
+shopt -u nullglob

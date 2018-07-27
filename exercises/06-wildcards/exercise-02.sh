@@ -18,3 +18,24 @@
 # Please enter a file extension: jpg
 # Please enter a file prefix: (Press ENTER for 20150810).
 # Renaming mycat.jpg to 20150810mycat.jpg.
+
+read -p "Please enter a file extension: " EXTENSION
+if [ ${#EXTENSION} -eq 0 ]
+then
+    echo "No file extension provided. Aborting."
+    exit 1
+fi
+PREFIX=$(date +%Y%m%d)
+read -p "Please enter a file prefix: (Press ENTER for ${PREFIX}). " NEW_PREFIX
+if [ ${#NEW_PREFIX} -ne 0 ]
+then
+    PREFIX="${NEW_PREFIX}"
+fi
+shopt -s nullglob
+for FILENAME in *.${EXTENSION}
+do
+    NEW_FILENAME="${PREFIX}${FILENAME}"
+    echo "Renaming ${FILENAME} to ${NEW_FILENAME}."
+    mv "${FILENAME}" "${NEW_FILENAME}"
+done
+shopt -u nullglob
