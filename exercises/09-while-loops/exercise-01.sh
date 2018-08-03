@@ -9,3 +9,10 @@
 # 2: daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 # 3: bin:x:2:2:bin:/bin:/usr/sbin/nologin
 # 4: sys:x:3:3:sys:/dev:/usr/sbin/nologin
+
+LINE_NUMBER=1
+while read LINE
+do
+	echo ${LINE_NUMBER}: ${LINE}
+	((LINE_NUMBER++))
+done < /etc/passwd
